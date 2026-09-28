@@ -1,0 +1,25 @@
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
+import RoutesSection from "@/components/RoutesSection";
+import FleetGallery from "@/components/FleetGallery";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-[oklch(0.12_0.01_85)]">
+      <Header />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <RoutesSection />
+        <FleetGallery />
+        <AboutSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
+}
