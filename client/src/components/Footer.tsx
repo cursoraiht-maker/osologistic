@@ -1,10 +1,12 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
   { href: "#flota", label: "Nuestra Flota" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#faq", label: "Preguntas Frecuentes" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -22,7 +24,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-12 w-12 shrink-0 rounded object-contain mb-4" />
+            <img
+              src="/logo-oso.jpg"
+              alt="OSO Logistics"
+              className="h-12 md:h-14 w-auto object-contain mb-4"
+            />
             <p className="text-[oklch(0.75_0.15_85)] font-semibold text-lg mb-2">
               Fuerza que mueve tu negocio
             </p>
@@ -56,7 +62,11 @@ export default function Footer() {
           <div>
             <h3 className="text-[oklch(0.75_0.15_85)] font-semibold text-lg mb-4">Contacto</h3>
             <div className="flex flex-col gap-3">
-              <a href="tel:+524464943350" className="flex items-center gap-3 text-sm hover:text-[oklch(0.75_0.15_85)] transition-colors">
+              <a
+                href="tel:+524464943350"
+                onClick={() => trackPhoneClick("footer")}
+                className="flex items-center gap-3 text-sm hover:text-[oklch(0.75_0.15_85)] transition-colors"
+              >
                 <Phone className="w-4 h-4 text-[oklch(0.75_0.15_85)]" />
                 <span>+52 446 494 3350</span>
               </a>
@@ -97,6 +107,7 @@ export default function Footer() {
                 href="https://wa.me/524464943350" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("footer")}
                 className="w-10 h-10 rounded-full bg-[oklch(0.20_0.01_85)] flex items-center justify-center hover:bg-[oklch(0.75_0.15_85)] hover:text-[oklch(0.12_0.01_85)] transition-colors"
                 aria-label="WhatsApp"
               >

@@ -10,7 +10,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center bg-[oklch(0.12_0.01_85)] pt-16 md:pt-20 overflow-hidden">
+    <section id="inicio" className="relative min-h-screen flex items-center bg-[oklch(0.12_0.01_85)] pt-20 md:pt-24 pb-12 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

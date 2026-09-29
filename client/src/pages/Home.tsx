@@ -3,8 +3,10 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import FleetGallery from "@/components/FleetGallery";
 import AboutSection from "@/components/AboutSection";
+import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -15,9 +17,11 @@ export default function Home() {
         <ServicesSection />
         <FleetGallery />
         <AboutSection />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }

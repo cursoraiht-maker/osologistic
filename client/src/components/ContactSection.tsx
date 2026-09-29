@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Loader2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { trackLeadSubmission, trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 
 const locations = ["Bacalar", "Mérida", "Chetumal", "Valladolid", "Otro"];
 
@@ -29,6 +30,11 @@ export default function ContactSection() {
   const createQuote = trpc.quotes.create.useMutation({
     onSuccess: () => {
       setSubmitted(true);
+      trackLeadSubmission({
+        serviceType: formData.serviceType,
+        origin: formData.origin,
+        destination: formData.destination,
+      });
       toast.success("¡Solicitud enviada! Nos pondremos en contacto pronto.");
     },
     onError: (error) => {
@@ -97,7 +103,11 @@ export default function ContactSection() {
               <CardContent className="p-6">
                 <h3 className="font-semibold text-[oklch(0.95_0.005_85)] mb-4">Información de Contacto</h3>
                 <div className="space-y-4">
-                  <a href="tel:+524464943350" className="flex items-center gap-3 text-[oklch(0.75_0.02_85)] hover:text-[oklch(0.75_0.15_85)] transition-colors">
+                  <a
+                    href="tel:+524464943350"
+                    onClick={() => trackPhoneClick("contact_card")}
+                    className="flex items-center gap-3 text-[oklch(0.75_0.02_85)] hover:text-[oklch(0.75_0.15_85)] transition-colors"
+                  >
                     <div className="w-10 h-10 rounded-lg bg-[oklch(0.75_0.15_85)/0.1] flex items-center justify-center">
                       <Phone className="w-5 h-5 text-[oklch(0.75_0.15_85)]" />
                     </div>
@@ -106,7 +116,10 @@ export default function ContactSection() {
                       <div className="font-medium">+52 446 494 3350</div>
                     </div>
                   </a>
-                  <a href="mailto:osologistics22@gmail.com" className="flex items-center gap-3 text-[oklch(0.75_0.02_85)] hover:text-[oklch(0.75_0.15_85)] transition-colors">
+                  <a
+                    href="mailto:osologistics22@gmail.com"
+                    className="flex items-center gap-3 text-[oklch(0.75_0.02_85)] hover:text-[oklch(0.75_0.15_85)] transition-colors"
+                  >
                     <div className="w-10 h-10 rounded-lg bg-[oklch(0.75_0.15_85)/0.1] flex items-center justify-center">
                       <Mail className="w-5 h-5 text-[oklch(0.75_0.15_85)]" />
                     </div>
@@ -142,6 +155,7 @@ export default function ContactSection() {
               href="https://wa.me/524464943350?text=Hola,%20me%20interesa%20cotizar%20un%20servicio%20de%20transporte" 
               target="_blank" 
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick("contact_card")}
               className="block"
             >
               <Card className="bg-[oklch(0.35_0.15_145)] border-[oklch(0.45_0.15_145)] hover:bg-[oklch(0.40_0.15_145)] transition-colors">

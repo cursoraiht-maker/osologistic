@@ -1,0 +1,15 @@
+# robots.txt for OSO Logistics
+User-agent: *
+Allow: /
+
+# Google Ads and search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://osologisticssureste.com/sitemap.xml

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import { trackPhoneClick } from "@/lib/analytics";
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
   { href: "#flota", label: "Nuestra Flota" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -26,8 +28,16 @@ export default function Header() {
       <div className="container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#inicio" onClick={() => scrollToSection("#inicio")} className="flex items-center gap-2">
-            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-10 w-10 shrink-0 rounded object-contain md:h-12 md:w-12" />
+          <a
+            href="#inicio"
+            onClick={() => scrollToSection("#inicio")}
+            className="flex items-center shrink-0 group py-1"
+          >
+            <img
+              src="/logo-oso.jpg"
+              alt="OSO Logistics"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -49,7 +59,11 @@ export default function Header() {
 
           {/* CTA Button - Desktop */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+524464943350" className="flex items-center gap-2 text-[oklch(0.75_0.15_85)]">
+            <a
+              href="tel:+524464943350"
+              onClick={() => trackPhoneClick("header")}
+              className="flex items-center gap-2 text-[oklch(0.75_0.15_85)] hover:underline"
+            >
               <Phone className="w-4 h-4" />
               <span className="text-sm font-medium">446 494 3350</span>
             </a>

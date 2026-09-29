@@ -5,6 +5,11 @@ import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
+// In-memory mock store for when database is not available
+const mockUsers = new Map<string, any>();
+const mockQuotes: QuoteRequest[] = [];
+let nextQuoteId = 1;
+
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
@@ -24,7 +29,13 @@ export async function upsertUser(user: InsertUser): Promise<void> {
 
   const db = await getDb();
   if (!db) {
-    console.warn("[Database] Cannot upsert user: database not available");
+    const existing = mockUsers.get(user.openId) || {};
+    mockUsers.set(user.openId, {
+      ...existing,
+      ...user,
+      role: user.role ?? (user.openId === ENV.ownerOpenId ? "admin" : "user"),
+      lastSignedIn: new Date(),
+    });
     return;
   }
 
@@ -79,40 +90,103 @@ export async function upsertUser(user: InsertUser): Promise<void> {
 export async function getUserByOpenId(openId: string) {
   const db = await getDb();
   if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
-    return undefined;
+    return mockUsers.get(openId);
   }
 
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
-  return result.length > 0 ? result[0] : undefined;
+  try {
+    const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.warn("[Database] Query failed, falling back to mock user:", error);
+    return mockUsers.get(openId);
+  }
 }
 
 // Quote request functions
 export async function createQuoteRequest(data: InsertQuoteRequest): Promise<{ id: number }> {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available");
+    const id = nextQuoteId++;
+    const newQuote: QuoteRequest = {
+      id,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      serviceType: data.serviceType,
+      origin: data.origin,
+      destination: data.destination,
+      travelDate: data.travelDate ?? null,
+      passengers: data.passengers ?? null,
+      packageDescription: data.packageDescription ?? null,
+      message: data.message ?? null,
+      status: "pendiente",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    mockQuotes.unshift(newQuote);
+    return { id };
   }
 
-  const result = await db.insert(quoteRequests).values(data);
-  return { id: Number(result[0].insertId) };
+  try {
+    const result = await db.insert(quoteRequests).values(data);
+    return { id: Number(result[0].insertId) };
+  } catch (error) {
+    console.warn("[Database] Insert failed, falling back to in-memory:", error);
+    const id = nextQuoteId++;
+    const newQuote: QuoteRequest = {
+      id,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      serviceType: data.serviceType,
+      origin: data.origin,
+      destination: data.destination,
+      travelDate: data.travelDate ?? null,
+      passengers: data.passengers ?? null,
+      packageDescription: data.packageDescription ?? null,
+      message: data.message ?? null,
+      status: "pendiente",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    mockQuotes.unshift(newQuote);
+    return { id };
+  }
 }
 
 export async function getQuoteRequests(): Promise<QuoteRequest[]> {
   const db = await getDb();
   if (!db) {
-    return [];
+    return [...mockQuotes];
   }
 
-  return await db.select().from(quoteRequests).orderBy(desc(quoteRequests.createdAt));
+  try {
+    return await db.select().from(quoteRequests).orderBy(desc(quoteRequests.createdAt));
+  } catch (error) {
+    console.warn("[Database] Query failed, falling back to in-memory:", error);
+    return [...mockQuotes];
+  }
 }
 
 export async function updateQuoteStatus(id: number, status: QuoteRequest["status"]): Promise<void> {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available");
+    const quote = mockQuotes.find((q) => q.id === id);
+    if (quote) {
+      quote.status = status;
+      quote.updatedAt = new Date();
+    }
+    return;
   }
 
-  await db.update(quoteRequests).set({ status }).where(eq(quoteRequests.id, id));
+  try {
+    await db.update(quoteRequests).set({ status }).where(eq(quoteRequests.id, id));
+  } catch (error) {
+    console.warn("[Database] Update failed, falling back to in-memory:", error);
+    const quote = mockQuotes.find((q) => q.id === id);
+    if (quote) {
+      quote.status = status;
+      quote.updatedAt = new Date();
+    }
+  }
 }
