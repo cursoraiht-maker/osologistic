@@ -5,14 +5,14 @@ const services = [
   {
     icon: Users,
     title: "Transporte de Personal",
-    description: "Servicio de traslado seguro y cómodo para empresas y grupos. Ideal para empleados, equipos de trabajo y eventos corporativos.",
-    features: ["Unidades con aire acondicionado", "Asientos cómodos y espaciosos", "Conductores profesionales certificados", "Horarios flexibles"],
+    description: "Transporte de personal para empresas que necesitan coordinar el traslado de sus colaboradores de acuerdo con sus centros de trabajo y operación.",
+    features: ["Rutas coordinadas con cada empresa", "Horarios adaptados a la operación", "Operadores profesionales", "Unidades cómodas y climatizadas"],
   },
   {
     icon: Package,
     title: "Paquetería y Mensajería",
-    description: "Envío de paquetes y documentos con seguimiento y entrega garantizada. Conectamos toda la Península de Yucatán.",
-    features: ["Entrega el mismo día disponible", "Seguimiento en tiempo real", "Manejo cuidadoso de mercancía", "Tarifas competitivas"],
+    description: "Servicio de paquetería y mensajería para empresas que requieren mover paquetes y documentos dentro de su operación regional.",
+    features: ["Envío de paquetes y documentos", "Seguimiento de envíos", "Manejo cuidadoso de mercancía", "Atención a necesidades empresariales"],
   },
 ];
 
@@ -24,13 +24,13 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: "Puntualidad Garantizada",
-    description: "Cumplimos con los horarios establecidos para que tu tiempo sea respetado.",
+    title: "Coordinación Puntual",
+    description: "Acordamos horarios y detalles del servicio con cada empresa.",
   },
   {
     icon: Shield,
-    title: "Seguridad Total",
-    description: "Unidades aseguradas y conductores capacitados para tu tranquilidad.",
+    title: "Seguridad y Mantenimiento",
+    description: "Unidades con mantenimiento preventivo y operadores profesionales.",
   },
   {
     icon: HeartHandshake,
@@ -49,10 +49,10 @@ export default function ServicesSection() {
             Nuestros Servicios
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[oklch(0.95_0.005_85)] mb-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Soluciones de Transporte a tu Medida
+            Transporte y logística para empresas
           </h2>
           <p className="text-lg text-[oklch(0.65_0.02_85)] max-w-2xl mx-auto">
-            Ofrecemos servicios integrales de logística y transporte para satisfacer las necesidades de tu empresa o negocio.
+            Coordinamos el transporte de personal y la paquetería empresarial en Yucatán y Quintana Roo, con atención directa para adaptar cada servicio a la operación de tu negocio.
           </p>
         </div>
 
@@ -94,6 +94,46 @@ export default function ServicesSection() {
               <p className="text-sm text-[oklch(0.55_0.02_85)]">{benefit.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20 max-w-4xl mx-auto">
+          <h3 className="text-2xl md:text-3xl font-bold text-[oklch(0.95_0.005_85)] mb-8 text-center" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            Preguntas frecuentes de empresas
+          </h3>
+          <div className="grid md:grid-cols-2 gap-x-10">
+            <details className="border-b border-[oklch(0.25_0.01_85)] py-5">
+              <summary className="cursor-pointer font-semibold text-[oklch(0.9_0.005_85)]">
+                ¿Qué servicios ofrece OSO Logistics a empresas?
+              </summary>
+              <p className="mt-3 text-[oklch(0.65_0.02_85)] leading-relaxed">
+                Ofrecemos transporte de personal y servicios de paquetería y mensajería para apoyar las necesidades operativas de empresas.
+              </p>
+            </details>
+            <details className="border-b border-[oklch(0.25_0.01_85)] py-5">
+              <summary className="cursor-pointer font-semibold text-[oklch(0.9_0.005_85)]">
+                ¿En qué zonas puedo solicitar el servicio?
+              </summary>
+              <p className="mt-3 text-[oklch(0.65_0.02_85)] leading-relaxed">
+                Atendemos solicitudes en Yucatán y Quintana Roo. La cobertura se confirma al revisar el origen, el destino y las necesidades de cada servicio.
+              </p>
+            </details>
+            <details className="border-b border-[oklch(0.25_0.01_85)] py-5">
+              <summary className="cursor-pointer font-semibold text-[oklch(0.9_0.005_85)]">
+                ¿Se pueden coordinar rutas y horarios para el personal?
+              </summary>
+              <p className="mt-3 text-[oklch(0.65_0.02_85)] leading-relaxed">
+                Sí. Comparte las ubicaciones, los horarios y el número de colaboradores para revisar una propuesta de transporte adecuada a la operación de tu empresa.
+              </p>
+            </details>
+            <details className="border-b border-[oklch(0.25_0.01_85)] py-5">
+              <summary className="cursor-pointer font-semibold text-[oklch(0.9_0.005_85)]">
+                ¿Qué información necesito para cotizar paquetería?
+              </summary>
+              <p className="mt-3 text-[oklch(0.65_0.02_85)] leading-relaxed">
+                Indica origen, destino y una descripción del paquete o mercancía. Con esos datos podremos revisar tu solicitud y dar seguimiento.
+              </p>
+            </details>
+          </div>
         </div>
       </div>
     </section>

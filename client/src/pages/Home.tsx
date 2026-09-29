@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
-import RoutesSection from "@/components/RoutesSection";
 import FleetGallery from "@/components/FleetGallery";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
@@ -14,7 +13,6 @@ export default function Home() {
       <main>
         <HeroSection />
         <ServicesSection />
-        <RoutesSection />
         <FleetGallery />
         <AboutSection />
         <ContactSection />

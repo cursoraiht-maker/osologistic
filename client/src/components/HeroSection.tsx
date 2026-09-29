@@ -31,12 +31,12 @@ export default function HeroSection() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.95_0.005_85)] leading-tight mb-6" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              Transporte Seguro en la{" "}
-              <span className="text-[oklch(0.75_0.15_85)]">Península de Yucatán</span>
+              Transporte de personal y paquetería{" "}
+              <span className="text-[oklch(0.75_0.15_85)]">para empresas</span>
             </h1>
             
             <p className="text-lg md:text-xl text-[oklch(0.75_0.02_85)] mb-8 max-w-xl mx-auto lg:mx-0">
-              Conectamos Bacalar, Mérida, Chetumal y Valladolid con servicios de transporte de personal y paquetería. 
+              Apoyamos la operación de empresas en Yucatán y Quintana Roo con traslados de colaboradores y envío de paquetes, coordinados según sus necesidades.
               <strong className="text-[oklch(0.75_0.15_85)]"> Fuerza que mueve tu negocio.</strong>
             </p>
 
@@ -52,10 +52,10 @@ export default function HeroSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                onClick={() => scrollToSection("#rutas")}
+                onClick={() => scrollToSection("#servicios")}
                 className="border-[oklch(0.75_0.15_85)] text-[oklch(0.75_0.15_85)] hover:bg-[oklch(0.75_0.15_85)/0.1] font-semibold text-lg px-8 py-6"
               >
-                Ver Rutas
+                Ver servicios
               </Button>
             </div>
 
@@ -88,7 +88,7 @@ export default function HeroSection() {
             <div className="relative rounded-2xl overflow-hidden border border-[oklch(0.25_0.01_85)] shadow-2xl">
               <img 
                 src="/flota-oso.jpg" 
-                alt="Flota OSO Logistics" 
+                alt="Flota de OSO Logistics para transporte de personal"
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.12_0.01_85)] via-transparent to-transparent" />

@@ -3,7 +3,6 @@ import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from "lucide-
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#rutas", label: "Rutas" },
   { href: "#flota", label: "Nuestra Flota" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },
@@ -23,7 +22,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-16 rounded mb-4" />
+            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-12 w-12 shrink-0 rounded object-contain mb-4" />
             <p className="text-[oklch(0.75_0.15_85)] font-semibold text-lg mb-2">
               Fuerza que mueve tu negocio
             </p>

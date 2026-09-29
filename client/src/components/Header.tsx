@@ -5,7 +5,6 @@ import { Menu, X, Phone } from "lucide-react";
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#rutas", label: "Rutas" },
   { href: "#flota", label: "Nuestra Flota" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },
@@ -28,7 +27,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#inicio" onClick={() => scrollToSection("#inicio")} className="flex items-center gap-2">
-            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-10 md:h-12 rounded" />
+            <img src="/logo-oso.jpg" alt="OSO Logistics" className="h-10 w-10 shrink-0 rounded object-contain md:h-12 md:w-12" />
           </a>
 
           {/* Desktop Navigation */}

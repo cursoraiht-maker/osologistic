@@ -22,10 +22,10 @@ export default function RoutesSection() {
             Rutas Disponibles
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[oklch(0.95_0.005_85)] mb-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Conectamos la Península de Yucatán
+            Rutas para la operación de tu empresa
           </h2>
           <p className="text-lg text-[oklch(0.65_0.02_85)] max-w-2xl mx-auto">
-            Operamos las principales rutas entre Bacalar, Mérida, Chetumal y Valladolid con salidas frecuentes y horarios flexibles.
+            Coordinamos traslados de personal y servicios de paquetería entre Mérida, Valladolid, Bacalar y Chetumal. Consulta disponibilidad y solicita una ruta adaptada a las necesidades de tu empresa.
           </p>
         </div>
 
